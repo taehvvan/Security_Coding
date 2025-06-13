@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        for(let i=1;i<10;i++) {
+            document.write(`2x${i}=${2*i}<br>`)
+        }
+
+        function myfunc() {
+            document.write("구구단");
+            document.write("구구단");
+            document.write("구구단");
+        }
+
+        // screen : 현재 해상도를 확인할 때 사용하는 객체
+        // alert(screen.width+","+screen.height);
+
+        // alert(window.innerWidth+","+window.innerHeight);
+        // alert(document.documentElement.clientWidth+","+document.documentElement.clientHeight);
+    
+        // location.href="https://127.0.0.1:5500/document.html?a=100&b=20";
+        console.log(location.protocol);
+        console.log(location.host);
+        console.log(location.hostname);
+        console.log(location.port);
+        console.log(location.pathname);     // ***중요 (라우터 역할)
+        console.log(location.search);
+
+        new URLSearchParams(location.pathname);
+
+        // *** 중요 (라우터에 추가 정보 분리하여 사용) ***
+        const queryString = '?name=John&age=30';
+        const params = new URLSearchParams(queryString);
+
+        console.log(params.get("name"));
+        console.log(params.get("age"));    
+    </script>
+</head>
+<body>
+    <button onclick="myfunc()">write 실행</button>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <span>책 찾기 : </span>
+    <input type="text" id="inputbox">
+    <button onclick="find()">찾기</button>
+
+    <br><br>
+
+    <div id="result">
+        <ul>
+            <li id="bookTitle"></li>
+            <li id="bookAuthor"></li>
+            <li id="bookPrice"></li>
+        </ul>
+
+    </div>
+
+    <script>
+        /*
+            1. 입력 상자에 제목을 입력
+            2. 찾기 버튼 클릭
+            3. books.json 파일을 XMLHttpRequest 객체를 통해 가져옴
+            4. 가져온 데이터를 입력상자의 값과 비교하여 정보 추출
+            5. 추출한 객체 정보를 ul 태그의 li에 입력
+        */
+
+        function find() {
+            let xhttp = new XMLHttpRequest();
+            console.log(xhttp);
+            xhttp.open("get", "books.json");
+            xhttp.send();
+            xhttp.onload=function(){
+                let books = JSON.parse(xhttp.responseText);
+
+                // id가 inputbox인 데이터를 변수에 저장
+                const input = document.getElementById("inputbox").value;
+
+                // 찾기
+                var result = books.find(book => book.title === input);
+
+                // 찾은 객체를 화면에 표시
+                const title = document.getElementById("bookTitle");
+                const author = document.getElementById("bookAuthor");
+                const price = document.getElementById("bookPrice");
+
+                if(result) {
+                    title.textContent = `책 제목 : ${result.title}`;
+                    author.textContent = `저자 : ${result.author}`;
+                    price.textContent = `가격 : ${result.price}`;
+                }
+            
+            }
+
+            /*
+                querySelector : .클래스명 , #아이디명, 태그명으로 객체를 획득
+                
+            */
+        }
+    </script>
+
+    
+</body>
+</html>

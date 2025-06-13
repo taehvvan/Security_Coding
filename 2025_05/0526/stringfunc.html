@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let jumin = "010501-3056874";
+        // 생년월일 : 2001년 05월 01일
+
+        let year = jumin.substring(0, 2);
+        year = "20" + year;
+        console.log(year);
+
+        let month = jumin.substring(2, 4);
+        console.log(month);
+
+        let day = jumin.substring(4, 6);
+        console.log(day);
+
+        console.log(`생년월일 : ${year}년 ${month}월 ${day}일`);
+
+        // substring 코드를 이용하여 반복문을 만들고 결과를 배열에 입력
+
+        let array = [];
+        for(i = 0; i < 3; i++) {
+            array[i] = jumin.substring(i*2, (i+1)*2);
+        }
+        
+        console.log(`생년월일 : 20${array[0]}년 ${array[1]}월 ${array[2]}일`);
+    
+        console.log(jumin.substring(7, 8));
+
+        console.log(jumin.substring(jumin.indexOf("-")+1, jumin.indexOf("-")+2));
+        let gen = jumin.substring(jumin.indexOf("-")+1, jumin.indexOf("-")+2);
+        gen = parseInt(gen)%2===0 ? "여" : "남";  // 숫자, 문자를 잘 구분할 것
+
+        console.log(gen);
+
+        // 코드 분리 해석
+        let start = jumin.indexOf("-")+1;
+        let end = jumin.indexOf("-")+2;
+        let result = jumin.substring(start, end);
+        console.log(result);
+
+        let data = "kim,park,hong,lee";
+        let darr = data.split(",");     // 해당 문자를 기준으로 문자열 분리
+        for(s of darr) {
+
+            console.log(s);
+            if(s.trim() === "lee") {    // trim() : 공백 제거
+                console.log("검색 성공");
+            }
+        }
+
+        console.log(jumin.charAt(6));   // 문자열에서 한 문자를 가져오기
+
+        console.log(jumin.length);      // 문자열 길이
+
+        /*
+            문자열 중요 함수
+            substring() : 특정 구간의 문자열 추출
+            indexOf() : 위치를 알려줌
+            charAt() : 문자열에서 한 문자를 추출
+            trim() : 공백 제거
+            length(변수) : 문자열 길이
+        */
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

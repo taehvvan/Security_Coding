@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 정규식의 생성자 방식
+        let reg = new RegExp("is");     // 정규식
+        let str = "This is test string";
+
+        // test()는 정규식의 함수이다
+        console.log(reg.test(str));     // 정규식.test(문자열) 형식
+//      console.log(str.test(reg));     // 오류 발생
+
+        // 문자열이 아닌 정규식에는 match()를 사용할 수 없다
+//      console.log(reg.match(str));    // 오류 발생
+        console.log(str.match(reg));    // 문자열.match() 형식
+
+        console.log("Is it working? This is myjob".match(/is/));
+        console.log("Is it working? This is myjob".match(/is/i));
+        console.log("Is it working? This is myjob".match(/are/i));
+        console.log("Is it working? This is myjob".match(/is/gi));
+
+        let arr = "Is it working? This is myjob".match(/is/g);
+        console.log(arr[0].indexOf("i"));
+
+        let str2 = `This is a test
+        is the start of line!!
+        is is is`.match(/^is/m);    // /^/ => 처음 시작하는 문자가 is일 경우
+        console.log(str2);
+
+        // 전화번호 정규식
+        console.log("010-1111-1111".match(/^(\d{3})-(\d{4})-(\d{4})/));
+
+        // 이메일 정규식, 주소 패턴 정규식
+        console.log("abc".match(/[a-zA-Z0-9]/));    // []는 한 자라도 포함된
+        console.log(/[a-zA-Z0-9]/.test("a"));
+        if(/[a-zA-Z0-9]/.test("a")) {
+            console.log("조건만족");
+        } else {
+            console.log("조건불만족");
+        }
+
+        // 찾는 범위 []에서 ^는 부정을 의미
+        console.log("a".match(/[^a-z]/));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

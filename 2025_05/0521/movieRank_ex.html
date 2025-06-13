@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 30px 0;  
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            align-content: center;
+        }
+
+        header, nav, main, footer {
+            margin: 0 auto;
+        }
+
+        header {
+            height: 70px;
+            background-color: rgb(16, 141, 0);
+            line-height: 70px;
+        }
+
+        nav {
+            height: 60px;
+            line-height: 60px;
+            margin-bottom: 15px;
+        }
+
+        main {
+            border: 3px solid rgb(16, 141, 0);
+            border-radius: 10px;
+        }
+
+        main > ul li {
+            height: 40px;
+            line-height: 40px;
+            list-style: none;
+            text-align: left;
+        }
+
+        footer {
+            height: 70px;
+            line-height: 70px;
+        }
+
+        .common {
+            width: 800px;
+            text-align: center;
+        }
+
+        a {
+            color: black;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        #title {
+            font-size: 30px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header class="common"><a id="title">일별 박스 오피스</a></header>
+        <nav class="common">
+            <input type="text" id="inputYear" size=6><a>년</a>
+            <select id="inputMonth">
+            </select>
+            <select id="inputDay">
+            </select>
+            <button id="searchBtn">확인</button>
+        </nav>
+        <main class="common">
+                <ul id="rankList"></ul>
+        </main>
+        <footer class="common">
+            <div id="movieDetail"></div>
+        </footer>
+    </div>
+
+    <script>
+        let month = document.getElementById("inputMonth");
+        for(let i = 1; i <= 12; i++) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.textContent = `${i}월`;
+            month.appendChild(option);
+        }
+
+        let day = document.getElementById("inputDay");
+        for(let i = 1; i <= 31; i++) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.textContent = i + "일";
+            day.appendChild(option);
+        }
+
+        findList(20250520);
+        function findList(targetDt) {
+            const xhttp = new XMLHttpRequest();
+
+            let target = targetDt;
+
+            let apikey = "xxxxxxxxxxxxxxxxxxxxxxxxxx";    // 영화진흥위원회 오픈 API에서 발급받은 api키
+            // let targetDt = "20250520";  // 추출할 날짜 정보
+            let method = "get";
+            let url = `https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${apikey}&targetDt=${target}`;
+            
+            xhttp.open(method, url);
+            xhttp.send();
+
+            xhttp.onload = function() {
+                let data = JSON.parse(xhttp.responseText);
+                for(i = 0; i < 10; i++) {
+                    let rank = data.boxOfficeResult.dailyBoxOfficeList[i].rank;
+                    let rankInten = data.boxOfficeResult.dailyBoxOfficeList[i].rankInten;
+                    let movieNm = data.boxOfficeResult.dailyBoxOfficeList[i].movieNm;
+
+                    let listStr = `${rank}위(${rankInten}) : ${movieNm}`;
+                    console.log(listStr);
+                    console.log(typeof rankInten);              // 문자열
+                    console.log(typeof parseInt(rankInten));    // 숫자형으로 변환
+
+                    let num = parseInt(rankInten);
+                    // 삼항연산자
+                    let result = num > 0 ? `▲ ${Math.abs(num)}` : num < 0 ? `▼ ${Math.abs(num)}` : num;
+                    console.log(result);
+
+                    listStr = `${rank}위(${result}) : ${movieNm}`;
+                    let list = document.getElementById("rankList");
+                    let li = document.createElement("li");
+                    li.textContent = listStr;
+                    list.appendChild(li);
+                }
+            }
+        }
+
+        
+
+        // 버튼 이벤트를 등록(태그의 객체 얻기, 얻은 태그를 이벤트 등록하기, 처리하기)
+        let searchBtn = document.getElementById("searchBtn");
+        searchBtn.addEventListener("click", function() {
+            let year = document.getElementById("inputYear").value;
+            let month = document.getElementById("inputMonth").value;
+            let day = document.getElementById("inputDay").value;
+            console.log(`${year}${month}${day}`);
+
+            month = month.length < 2 ? "0" + month : month;
+            day = day.length < 2 ? "0" + day : day;
+
+            let list = document.getElementById("rankList");
+            list.textContent = "";
+
+            findList(`${year}${month}${day}`);
+        });
+
+        // 사용자 편의성을 이용한 이벤트 코드 구현 (일을 변경할 때)
+        document.getElementById("inputDay").addEventListener("change", function() {
+            let year = document.getElementById("inputYear").value;
+            let month = document.getElementById("inputMonth").value;
+            let day = document.getElementById("inputDay").value;
+            console.log(`${year}${month}${day}`);
+
+            month = month.length < 2 ? "0" + month : month;
+            day = day.length < 2 ? "0" + day : day;
+
+            let list = document.getElementById("rankList");
+            list.textContent = "";
+
+            findList(`${year}${month}${day}`);
+        });
+
+        
+        
+    </script>
+</body>
+</html>

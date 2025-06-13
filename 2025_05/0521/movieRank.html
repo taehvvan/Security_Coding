@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function showRank() {
+            const inputYear = document.getElementById("inputYear").value;
+            const inputMonth = document.getElementById("inputMonth").value;
+            const inputDay = document.getElementById("inputDay").value;
+
+            const month = inputMonth.padStart(2, '0');
+            const day = inputDay.padStart(2, '0');  
+
+            
+            let apikey = "xxxxxxxxxxxxxxxxxxxxxxxx";    // 영화진흥위원회 오픈 API에서 발급받은 api키
+            let targetDt = `${inputYear}${month}${day}`;  // 추출할 날짜 정보
+            let method = "get";
+            let url = `https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${apikey}&targetDt=${targetDt}`;
+            
+            const xhttp = new XMLHttpRequest();
+            xhttp.open(method, url);
+            xhttp.send();
+
+            xhttp.onload = function() {
+                const movieData = JSON.parse(xhttp.responseText);
+
+                const movieList = movieData.boxOfficeResult.dailyBoxOfficeList;
+
+                let ul = document.getElementById("rankList");
+                ul.innerHTML = "";
+
+                let detailDiv = document.getElementById("movieDetail");
+                detailDiv.innerHTML = "";
+
+                for(let i=0;i<movieList.length;i++){
+                    let li = document.createElement("li");
+                    const a = document.createElement("a");
+                    a.href = "#";
+                    a.textContent = `${movieList[i].rank}위 - ${movieList[i].movieNm}`;
+                    a.style.color = 'black';
+                    a.style.cursor = 'pointer';
+
+                    // 클릭 시 상세 정보 요청 및 출력
+                    a.addEventListener("click", function () {
+                        const movieCd = movieList[i].movieCd;
+                        const detailUrl = `https://kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=${apikey}&movieCd=${movieCd}`;
+
+                        const detailXhttp = new XMLHttpRequest();
+                        detailXhttp.open(method, detailUrl);
+                        detailXhttp.send();
+
+                        detailXhttp.onload = function () {
+                            const detailData = JSON.parse(detailXhttp.responseText);
+                            const info = detailData.movieInfoResult.movieInfo;
+
+                            detailDiv.innerHTML = `
+                                <h3>🎬 ${info.movieNm}</h3>
+                                <p><strong>영문명:</strong></p>
+                                <p><strong>누적관객수:</strong> ${info.audiAcc}</p>
+                                <p><strong>상영시간:</strong></p>
+                                <p><strong>감독:</strong></p>
+                                <p><strong>출연 배우:</strong></p>
+                            `;
+                            }
+                        });
+
+                        li.appendChild(a);
+                        ul.appendChild(li);
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 30px 0;  
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            align-content: center;
+        }
+
+        header, nav, main, footer {
+            margin: 0 auto;
+        }
+
+        header {
+            height: 70px;
+            background-color: rgb(16, 141, 0);
+            line-height: 70px;
+        }
+
+        nav {
+            height: 60px;
+            line-height: 60px;
+            margin-bottom: 15px;
+        }
+
+        main {
+            border: 3px solid rgb(16, 141, 0);
+            border-radius: 10px;
+        }
+
+        main > ul li {
+            height: 40px;
+            line-height: 40px;
+            list-style: none;
+            text-align: left;
+        }
+
+        footer {
+            height: 70px;
+            line-height: 70px;
+        }
+
+        .common {
+            width: 800px;
+            text-align: center;
+        }
+
+        a {
+            color: black;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        #title {
+            font-size: 30px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header class="common"><a id="title">일별 박스 오피스</a></header>
+        <nav class="common">
+            <input type="text" id="inputYear" size=6><a>년</a>
+            <select id="inputMonth">
+                <option value="1">1월</option>
+                <option value="2">2월</option>
+                <option value="3">3월</option>
+                <option value="4">4월</option>
+                <option value="5">5월</option>
+                <option value="6">6월</option>
+                <option value="7">7월</option>
+                <option value="8">8월</option>
+                <option value="9">9월</option>
+                <option value="10">10월</option>
+                <option value="11">11월</option>
+                <option value="12">12월</option>
+            </select>
+            <select id="inputDay">
+                <option value="1">1일</option>
+                <option value="2">2일</option>
+                <option value="3">3일</option>
+                <option value="4">4일</option>
+                <option value="5">5일</option>
+                <option value="6">6일</option>
+                <option value="7">7일</option>
+                <option value="8">8일</option>
+                <option value="9">9일</option>
+                <option value="10">10일</option>
+                <option value="11">11일</option>
+                <option value="12">12일</option>
+                <option value="13">13일</option>
+                <option value="14">14일</option>
+                <option value="15">15일</option>
+                <option value="16">16일</option>
+                <option value="17">17일</option>
+                <option value="18">18일</option>
+                <option value="19">19일</option>
+                <option value="20">20일</option>
+                <option value="21">21일</option>
+                <option value="22">22일</option>
+                <option value="23">23일</option>
+                <option value="24">24일</option>
+                <option value="25">25일</option>
+                <option value="26">26일</option>
+                <option value="27">27일</option>
+                <option value="28">28일</option>
+                <option value="29">29일</option>
+                <option value="30">30일</option>
+                <option value="31">31일</option>
+            </select>
+            <button onclick="showRank()">확인</button>
+        </nav>
+        <main class="common">
+                <ul id="rankList"></ul>
+        </main>
+        <footer class="common">
+            <div id="movieDetail"></div>
+        </footer>
+    </div>
+</body>
+</html>
