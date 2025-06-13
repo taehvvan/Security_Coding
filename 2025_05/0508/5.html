@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .head-menu, .head-menu ul {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .head-menu ul li {
+            margin: 20px;
+        }
+
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .pay {
+            border: 1px solid black;
+            border-radius: 100%;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 25px;
+        }
+
+        li {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+        }
+        span {
+            display: block;
+        }
+
+        #img {
+            text-align: center;
+            
+        }
+        .icon-with-label {
+            display: inline-block;
+            margin: 5px 10px;
+        }
+        .search {
+            
+        }
+        .sub-menu {
+            display: flex;
+            width: 60%;
+            margin: 5px 100px;
+            justify-content: space-around;
+            align-content: center;
+        }
+        #sc {
+            width: 30px;
+            height: 30px;
+            margin-left: -30px;
+        }
+
+        #logo {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: greenyellow;
+            text-align: center;
+        }
+
+
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #dcdcdc;
+            border-radius: 50px;
+            padding: 5px 15px;
+        }
+        input[type="text"] {
+            border: none;
+            outline: none;
+            padding: 10px;
+            width: 300px;
+            border-radius: 30px;
+        }
+        button {
+            background-color: #1ec800;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #159b00;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="head-menu">
+            <!--bar, pay, 네이버톡, 알림, 장바구니-->
+            <ul class="left-menu">
+                <li class="menu">
+                    <img src="/images/bars.png" width="24px">
+                </li>
+                <li class="menu">
+                    <a href="">
+                        <span class="pay">pay</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="right-menu">
+                <li class="menu">
+                    <img src="/images/messenger.png" width="24px">
+                </li>
+                <li class="menu">
+                    <img src="/images/notification.png" width="24px">
+                </li>
+                <li class="menu">
+                    <img src="/images/shopping-cart.png" width="24px">
+                </li>
+            </ul>
+        </div>
+        <div>
+            <!--네이버로고, 검색창-->
+            <ul class="ul-menu">
+                <li class="menu">
+                    <div class="search">
+                        <span id="logo">NAVER</span>
+                        <div class="search-container">
+                            <input type="text" name="query" placeholder="네이버 검색" required>
+                            <button type="submit">검색</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <nav>
+        <!-- 메일, 카페, 블로그, 스토어, ... -->
+        <ul class="sub-menu">
+            <li class="icon-with-label">
+                <img src="/images/email.png" width="24px">
+                <span>메일</span>
+            </li>
+            <li class="icon-with-label">
+                <img src="/images/cafe.png" width="24px">
+                <span>카페</span>
+            </li>
+            <li class="icon-with-label">
+                <img src="/images/blog.png" width="24px">
+                <span>블로그</span>
+            </li>
+            <li class="icon-with-label">
+                <img src="/images/store.png" width="24px">
+                <span>스토어</span>
+            </li>
+            <li class="icon-with-label">
+                <img src="/images/news.png" width="24px">
+                <span>뉴스</span>
+            </li>
+            <li class="icon-with-label">
+                <img src="/images/finance.png" width="24px">
+                <span>증권</span>
+            </li>
+            <li class="icon-with-label">
+                <img src="/images/house.png" width="24px">
+                <span>부동산</span>
+            </li>
+            <li class="icon-with-label">
+                <img src="/images/map.png" width="24px">
+                <span>지도</span>
+            </li>
+            <li class="icon-with-label">
+                <img src="/images/comics.png" width="24px">
+                <span>웹툰</span>
+            </li>
+        </ul>
+
+
+    </nav>
+</body>
+</html>

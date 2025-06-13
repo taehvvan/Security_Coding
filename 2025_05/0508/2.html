@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid red;
+            width: 300px;
+        }
+        
+        a {
+            border: 1px solid black;
+            width: 300px;
+            display: inline-block;
+            /*
+                inline : 내용물의 크기만큼만 차지함
+                block : 한 줄을 차지함
+                inline-block : 한 줄을 차지하면서도 크기를 정할 수 있음
+            */
+        }
+
+        ul {
+            border: 1px solid gold;
+            padding: 0;
+            text-align: center;
+        }
+
+        li {
+            border: 1px solid black;
+            display: inline-block;
+            list-style-type: none;
+            padding: 10px 24px;
+        }
+
+        li:hover {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div>daum</div>
+    <a href="http://www.naver.com">naver.com</a>
+    <span>w3schools</span>
+    <p>seoil</p>
+
+    <!-- ul (unordered list) : 순서 없는 리스트-->
+    <ul>
+
+        <li>menu1</li>
+        <li>menu2</li>
+        <li>menu3</li>
+        <li>menu4</li>
+
+        <!--
+            display가 inline 또는 inline-block일 경우 코드상의 줄바꿈도 간격으로 적용됨
+            아래와 같이 한 줄로 처리하여 디자인 상으로 문제가 없도록 함
+        <li>menu1</li><li>menu2</li><li>menu3</li><li>menu4</li>
+        -->
+    </ul>
+
+</body>
+</html>
