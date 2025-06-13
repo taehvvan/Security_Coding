@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1. data.json으로부터 데이터를 수신한다.
+        // 데이터 통신 객체를 만들고, 페이지 요청하고, 보내고, 수신할 때 처리
+        let xmlhttp = new XMLHttpRequest();     // 데이터 통신 객체 만들고
+        // console.log(xmlhttp);
+        xmlhttp.open("get", "data.json");              // 페이지 요청하고
+        xmlhttp.send();                         // 보내고
+        xmlhttp.onreadystatechange=function(){  // 수신할 때 처리
+            console.log("type1:"+typeof xmlhttp.responseText);
+        
+
+        // 2. 수신데이터를 반복문을 사용하여 아래 코드를 body에 입력한다.
+
+        // 입력할 객체 얻기
+            var data = JSON.parse(xmlhttp.responseText);
+            console.log("type2:"+typeof data);
+            let body = document.querySelector("body");
+
+            data.forEach((obj)=>{
+                // console.log(obj);
+                let fw = `<div>
+                            <img src="${obj.pic}" alt="${obj.pic}" width="100px">
+                            <span>${obj.name}</span>
+                            <span>${obj.hp}</span>
+                        </div>`;
+                body.innerHTML += fw;
+            });
+            console.log("type3:"+ typeof JSON.stringify(data)); 
+        }
+        
+    </script>
+    <style>
+        div {
+            display: flex;
+            columns: row;
+        }
+
+        span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</body>
+</html>

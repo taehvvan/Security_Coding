@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="block 버튼" onclick="block()">
+    <input type="button" value="flex 버튼" onclick="flex()">
+</body>
+
+<script>
+    var main = document.querySelector("body");
+    console.log(main);
+
+    // 객체 생성하기
+    var div = window.document.createElement("div");
+    
+    div.style.width="100px";
+    div.style.height="100px";
+    div.style.backgroundColor="red";
+    div.style.margin="5px 5px";
+
+    // for(초기값, 제어문, 증감식) { }
+    for(i=0; i<10; i++) {
+        // main.appendChild(div);
+        var div2 = window.document.createElement("div");
+    
+        div2.style.width="100px";
+        div2.style.height="100px";
+        div2.style.backgroundColor="red";
+        div2.style.margin="5px 5px";
+        div2.textContent=i+1;
+        div2.style.fontSize="50px";
+        main.appendChild(div2);
+    }
+
+    
+
+    function block() {
+        main.style.display="block";
+    }
+
+    function flex() {
+        main.style.display="flex";
+        main.style.flexWrap="wrap";
+    }
+</script>
+</html>

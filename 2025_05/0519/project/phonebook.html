@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <title>Phone Book</title>
+  <!-- 구글 폰트 및 아이콘 CDN -->
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 헤더 -->
+    <div class="header">
+      <h1>Phone Book</h1>
+    </div>
+    <!-- 내 프로필 -->
+    <div class="my-profile">
+      <span>My profile</span>
+      <i class="fas fa-chevron-right"></i>
+    </div>
+    <!-- 연락처 리스트 -->
+    <ul class="contacts" id="contacts">
+      <!-- 자바스크립트로 렌더링 -->
+    </ul>
+  </div>
+  <script>
+    // 연락처 데이터
+    const contacts = [
+      {
+        img: "https://randomuser.me/api/portraits/men/34.jpg",
+        name: "Jang Woo Jin",
+        phone: "010 9647 5127"
+      },
+      {
+        img: "https://randomuser.me/api/portraits/women/65.jpg",
+        name: "Jane Cooper",
+        phone: "010 9647 1111"
+      },
+      {
+        img: "https://randomuser.me/api/portraits/men/44.jpg",
+        name: "Ralph Edwards",
+        phone: "010 9647 2222"
+      },
+      {
+        img: "https://randomuser.me/api/portraits/men/38.jpg",
+        name: "Robert Fox",
+        phone: "010 9647 3333"
+      },
+      {
+        img: "https://randomuser.me/api/portraits/men/55.jpg",
+        name: "Eleanor Pena",
+        phone: "010 9647 0000"
+      }
+    ];
+
+    
+    const contactsEl = document.getElementById('contacts');
+    let i = 1;
+    contacts.forEach(contact => {
+        
+         contactsEl.innerHTML += `
+        <li class="contact-item">
+          <img class="contact-img" src="${contact.img}" alt="${contact.name}">
+          <div class="contact-info">
+            <span class="contact-name"><a href="phonebook_proc.html?id=${i}">${contact.name}</a></span>
+            <span class="contact-phone">${contact.phone}</span>
+          </div>
+          <i class="fas fa-phone call-icon"></i>
+        </li>
+      `;
+      i++;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div></div>
+    <!--
+        target
+        1. _self : 현재 창에 열기
+        2. _blank : 새 창에 열기
+        3. _parent : 현재 창에 열되 부모 창을 유지시킴
+        4. _top : 
+    -->
+    <a href="1.html" target="_blank">Visit W3Schools!</a>
+    
+    <img src="images/bonobono.webp">
+    <!-- 현재의 파일 위치에서 images 폴더 아래 이미지 접근 -->
+    <img src="./images/bonobono.webp">
+    <!-- 현재의 폴더 위치에서 images 폴더 아래 이미지 접근 -->
+    <img src="/0512/images/bonobono.webp">
+    <!-- 절대 경로(웹 서버 시작 위치) 위치에서 images 폴더 아래 이미지 접근 -->
+    <img src="../0512/images/bonobono.webp">
+    <!-- 현재 폴더를 기준으로 상위 폴더의 images 폴더를 의미 -->
+    
+</body>
+</html>

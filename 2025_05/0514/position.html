@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #abs {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            position: absolute;
+            /* 
+                absolute : 전체 화면을 기준으로 고정
+                fixed : 현재 화면을 기준으로 고정
+                sticky : 현재 화면을 기준으로 따라옴
+                relative 
+            */
+            top: 100px;
+            left: 200px;
+        }
+
+        div {
+            margin: 10px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        #div2 {
+            background-color: white;
+            border: 1px solid black;
+            width: 100%;
+            display: block;
+            position: relative;
+        }
+
+        #div3 {
+            background-color: aquamarine;
+            position: absolute;
+            top: 200px;
+            left: 200px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>기본 position : static</h1>
+    <div style="background-color: grey;">
+        <label>이름 : </label>
+        <input type="text">
+        <label>전화번호 : </label>
+        <input type="text">
+        <label>이메일 : </label>
+        <input type="text">
+    </div>
+
+    <div id="abs">
+
+    </div>
+
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div id="div2">
+        <div id="div3">
+
+        </div>
+    </div>
+</body>
+</html>
